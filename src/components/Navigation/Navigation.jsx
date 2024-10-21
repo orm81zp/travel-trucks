@@ -1,8 +1,6 @@
 import clsx from "clsx";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { ROUTERS } from "../../const";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import css from "../styles/navigation.module.css";
 
 const buildClassName = ({ isActive }) => {
@@ -10,18 +8,14 @@ const buildClassName = ({ isActive }) => {
 };
 
 const Navigation = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
   return (
     <nav className={css.nav}>
       <NavLink className={buildClassName} to={ROUTERS.HOME}>
         Home
       </NavLink>
-      {isLoggedIn && (
-        <NavLink className={buildClassName} to={ROUTERS.CONTACTS}>
-          Contacts
-        </NavLink>
-      )}
+      <NavLink className={buildClassName} to={ROUTERS.CATALOG}>
+        Catalog
+      </NavLink>
     </nav>
   );
 };

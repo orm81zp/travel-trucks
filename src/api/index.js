@@ -1,57 +1,23 @@
 import axios from "axios";
+import { CATALOG_LIMIT } from "../const";
+import mockData from "./mock.json";
 
-axios.defaults.baseURL = "https://connections-api.goit.global";
+axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/";
 axios.defaults.headers = {
   "Content-Type": "application/json",
 };
 
-export const setAuthHeader = (token) => {
-  axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+export const catalogFetch = async (
+  options = { limit: CATALOG_LIMIT, page: 1 }
+) => {
+  return mockData;
+  // const response = await axios.get("/campers", {
+  //   params: { ...options },
+  // });
+  // return response.data;
 };
 
-export const clearAuthHeader = () => {
-  axios.defaults.headers["Authorization"] = "";
-};
-
-export const usersSignup = async (user) => {
-  const { data } = await axios.post("/users/signup", user);
-  setAuthHeader(data.token);
-  return data;
-};
-
-export const usersLogin = async (user) => {
-  const { data } = await axios.post("/users/login", user);
-  setAuthHeader(data.token);
-  return data;
-};
-
-export const usersLogout = async (user) => {
-  await axios.post("/users/logout", user);
-  clearAuthHeader();
-};
-
-export const usersCurrent = async (token) => {
-  setAuthHeader(token);
-  const { data } = await axios.get("/users/current");
-  return data;
-};
-
-export const contactsFetch = async () => {
-  const response = await axios.get("/contacts");
-  return response.data;
-};
-
-export const contactsAdd = async (newContact) => {
-  const response = await axios.post("/contacts", newContact);
-  return response.data;
-};
-
-export const contactDelete = async (contactId) => {
-  const response = await axios.delete(`/contacts/${contactId}`);
-  return response.data;
-};
-
-export const contactsUpdate = async (contactId, updatedContact) => {
-  const response = await axios.patch(`/contacts/${contactId}`, updatedContact);
+export const truckFetch = async (truckId) => {
+  const response = await axios.get(`/campers/${truckId}`);
   return response.data;
 };

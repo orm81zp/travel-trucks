@@ -1,6 +1,6 @@
 .nav {
   display: flex;
-  gap: 12px;
+  gap: 32px;
 }
 
 .link {
@@ -10,9 +10,5 @@
 }
 
 .link.active {
-  color: var(--color-primary);
-}
-
-.link:hover, .link:focus {
-  text-decoration: underline;
+  color: var(--color-button-hover);
 }

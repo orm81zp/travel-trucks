@@ -6,7 +6,7 @@
 }
 
 .field input {
-  width: 100%;
+  width: 100%; 
 }
 
 .field input::placeholder {

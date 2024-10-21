@@ -1,20 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { authReducer } from "./auth/slice";
-import { contactsReducer } from "./contacts/slice";
+import { favoriteReducer } from "./favorite/slice";
+import { catalogReducer } from "./catalog/slice";
 import { filtersReducer } from "./filters/slice";
 
-const persistAuthConfig = {
-  key: "auth",
+const persistFavoriteConfig = {
+  key: "favorite",
   storage,
-  whitelist: ["token"],
+  whitelist: ["items"],
 };
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(persistAuthConfig, authReducer),
-    contacts: contactsReducer,
+    favorite: persistReducer(persistFavoriteConfig, favoriteReducer), 
+    catalog: catalogReducer,
     filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>

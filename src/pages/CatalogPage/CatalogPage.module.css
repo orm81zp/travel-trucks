@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+}
+
+.sidebar {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+  }
+  .sidebar {
+    width: 360px;
+    flex-shrink: 0;
+  }
+}

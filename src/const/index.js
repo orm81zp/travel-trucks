@@ -1,8 +1,8 @@
 export const ROUTERS = {
   HOME: "/",
-  CONTACTS: "/contacts",
-  LOGIN: "/login",
-  REGISTER: "/register",
+  CATALOG: "/catalog",
 };
 
 export const ROOT_CONTAINER = '#root';
+
+export const CATALOG_LIMIT = 4
