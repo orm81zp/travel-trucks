@@ -1,0 +1,12 @@
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .appWrapper {
+    gap: 32px;
+  }
+}

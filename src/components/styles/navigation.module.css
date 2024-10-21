@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  gap: 12px;
+}
+
+.link {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link.active {
+  color: var(--color-primary);
+}
+
+.link:hover, .link:focus {
+  text-decoration: underline;
+}
