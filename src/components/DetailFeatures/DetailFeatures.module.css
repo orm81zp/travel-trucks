@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  gap: 100px;
+  padding: 44px 52px;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: var(--color-inputs);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Inter Medium", Arial, sans-serif;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.value {
+  text-transform: capitalize;
+}

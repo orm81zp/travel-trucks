@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectFilteredCatalog,
@@ -9,9 +10,9 @@ import css from "./CatalogList.module.css";
 import TruckCard from "../TruckCard/TruckCard";
 import Loader from "../Loader/Loader";
 import { fetchCatalog, fetchMore } from "../../redux/catalog/operations";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "../Button/Button";
 import { CATALOG_LIMIT } from "../../const";
+import Message from "../Message/Message";
 
 const CatalogList = () => {
   const dispatch = useDispatch();
@@ -19,32 +20,35 @@ const CatalogList = () => {
   const loading = useSelector(selectLoading);
   const total = useSelector(selectTotal);
   const error = useSelector(selectError);
-  const filteredCatalog = useSelector(selectFilteredCatalog);
   const showLoadMore = useMemo(
     () => page < Math.floor(total / CATALOG_LIMIT),
     [total, page]
   );
+  const filteredCatalog = useSelector(selectFilteredCatalog);
+  const empty = filteredCatalog.length === 0;
 
   useEffect(() => {
     dispatch(fetchCatalog());
   }, [dispatch]);
 
-  const handleLoadMore = useCallback(() => {
-    setPage(page + 1);
-    dispatch(fetchMore({ page: page + 1 }));
-  }, [dispatch, page]);
-
-  if (loading) {
-    return <Loader />;
-  }
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    dispatch(fetchMore({ page: nextPage }));
+  };
 
   return (
     <div className={css.wrapper}>
       {error && <span>{error}</span>}
-      {!error &&
-        filteredCatalog.map((truck) => (
-          <TruckCard key={truck.id} data={truck} />
-        ))}
+      {empty && (
+        <Message>
+          Nothing to show. Please, change filters or try to load more.
+        </Message>
+      )}
+      {filteredCatalog.map((truck) => (
+        <TruckCard key={truck.id} data={truck} />
+      ))}
+      {loading && <Loader />}
       {showLoadMore && (
         <div className={css.loadmore}>
           <Button variant="secondary" onClick={handleLoadMore}>

@@ -7,7 +7,14 @@ import DetailImage from "../DetailImage/DetailImage";
 import { useState } from "react";
 import Tabs from "../Tabs/Tabs";
 import BookForm from "../BookForm/BookForm";
-const TABS = ["Features", "Reviews"];
+import DetailFeatures from "../DetailFeatures/DetailFeatures";
+import ReviewsList from "../ReviewsList/ReviewsList";
+
+const TAB_NAMES = {
+  FEATURES: "features",
+  REVIEWS: "reviews",
+};
+const TABS = [TAB_NAMES.FEATURES, TAB_NAMES.REVIEWS];
 
 const DetailTruck = ({ data }) => {
   const [currentTab, setCurrentTab] = useState(TABS[0]);
@@ -25,6 +32,15 @@ const DetailTruck = ({ data }) => {
     setCurrentTab(tab);
   };
 
+  const renderTabContent = () => {
+    if (currentTab === TAB_NAMES.FEATURES) {
+      return <DetailFeatures data={data} />;
+    } else if (currentTab === TAB_NAMES.REVIEWS) {
+      return <ReviewsList reviews={[]} />;
+    }
+    return <div>Please, choose a tab</div>;
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.header}>
@@ -39,8 +55,8 @@ const DetailTruck = ({ data }) => {
       <div className={css.footer}>
         <Tabs tabs={TABS} onChange={handleTabChange} currentTab={currentTab} />
         <div className={css.content}>
-          <div>FEATURES</div>
-          <div>
+          <div className={css.contentSide}>{renderTabContent()}</div>
+          <div className={css.contentSide}>
             <BookForm />
           </div>
         </div>

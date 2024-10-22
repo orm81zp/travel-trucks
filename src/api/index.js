@@ -13,11 +13,11 @@ export const catalogFetch = async (options = {}) => {
     page: 1,
     ...options,
   };
-  return mockData;
-  // const response = await axios.get("/campers", {
-  //   params,
-  // });
-  // return response.data;
+  // return mockData;
+  const response = await axios.get("/campers", {
+    params,
+  });
+  return response.data;
 };
 
 export const truckFetch = async (truckId) => {

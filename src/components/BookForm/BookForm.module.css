@@ -1,7 +1,20 @@
 .wrapper {
-  padding: 12px;
-  border: 1px solid #000;
-  border-radius: 4px;
+  padding: 44px 58px;
+  border: 1px solid var(--color-grey-light);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.title {
+  font-family: "Inter Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-main);
+}
+
+.description {
+  color: var(--color-grey);
 }
 
 .form {
@@ -10,16 +23,10 @@
   gap: 16px;
 }
 
-.form button{
+.form button {
   flex-grow: 0;
 }
 
 .actions {
   text-align: center;
-}
-
-@media only screen and (min-width: 768px) {
-.wrapper {
-    max-width: 380px;
-  }
 }

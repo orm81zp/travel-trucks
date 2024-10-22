@@ -1,5 +1,5 @@
 .name {
-  font-size: 24px;
-  line-height: 2;
-  font-family: "Inter Bold", Arial, sans-serif;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

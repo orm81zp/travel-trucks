@@ -11,7 +11,7 @@
 
 .wrapper {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 12px;
@@ -23,7 +23,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .brand {
@@ -31,10 +30,13 @@
   font-family: "Inter ExtraBold", Arial, sans-serif;
 }
 
+.brand a {
+  text-decoration: none;
+}
+
 .highlight {
   color: var(--color-text);
 }
-
 
 @media only screen and (min-width: 768px) {
   .wrapper {

@@ -1,1 +1,33 @@
-/**/
+.wrapper {
+  background-image: url("/images/hero.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 100%;
+}
+
+.hero {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  padding: 80px 24px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.title,
+.description {
+  color: var(--color-inputs);
+}
+
+@media only screen and (min-width: 768px) {
+  .hero {
+    padding: 160px 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero {
+    padding: 260px 64px;
+  }
+}

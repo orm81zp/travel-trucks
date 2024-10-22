@@ -20,15 +20,20 @@ const filtersSlice = createSlice({
       state.equipments = action.payload || [];
     },
     setFilters(state, action) {
-      const { type = "", equipments = [] } = action.payload || {};
+      const {
+        type = "",
+        equipments = [],
+        location = "",
+      } = action.payload || {};
       state.type = type;
+      state.location = location;
       state.equipments = equipments;
     },
   },
 });
 
 // actions
-export const { changeLocation, changeType, changeEquipments, setFilters} =
+export const { changeLocation, changeType, changeEquipments, setFilters } =
   filtersSlice.actions;
 
 // reducer

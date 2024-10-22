@@ -7,11 +7,6 @@
   border-radius: 20px;
   flex-direction: column;
 }
-.image {
-  flex-shrink: 0;
-  object-fit: cover;
-  border-radius: 10px;
-}
 .priceRow {
   display: flex;
   align-items: center;

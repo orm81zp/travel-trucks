@@ -27,7 +27,6 @@ const TruckCard = ({ data }) => {
     gallery = [],
   } = data;
   const isFavorite = favorites.includes(id);
-  const firstImage = gallery.length > 0 ? gallery[0]["thumb"] : null;
 
   const handleFavorite = (event) => {
     event.preventDefault();

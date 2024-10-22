@@ -19,13 +19,13 @@ const Button = ({
     }
   };
 
-  const classname = clsx(css.button, css[variant]);
+  const className = clsx(css.button, css[variant]);
 
   if (external) {
     return (
       <a
         href={href}
-        className={classname}
+        className={className}
         rel="nofollow noopener"
         target="_blank"
       >
@@ -34,14 +34,14 @@ const Button = ({
     );
   } else if (to) {
     return (
-      <Link to={to} className={classname}>
+      <Link to={to} className={className}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type={type} onClick={clickHandler} className={classname}>
+    <button type={type} onClick={clickHandler} className={className}>
       {children}
     </button>
   );

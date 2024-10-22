@@ -13,8 +13,10 @@
   line-height: 1.5;
   color: var(--color-main);
   position: relative;
+  text-transform: capitalize;
 }
 
+.tab:hover::before,
 .active::before {
   content: "";
   position: absolute;

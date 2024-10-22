@@ -23,6 +23,22 @@
   border-radius: 12px;
 }
 
+.fieldWithTextarea {
+  height: auto;
+  align-items: flex-start;
+}
+
+.field label {
+  flex-shrink: 0;
+}
+
+.field textarea {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
 .fieldFocused {
   color: var(--color-main);
 }
@@ -49,4 +65,5 @@ input::placeholder {
 .error {
   display: block;
   color: var(--color-error);
+  width: 100%;
 }

@@ -9,11 +9,17 @@ import css from "./BookForm.module.css";
 const BookForm = () => {
   const handleSubmit = (contact, actions) => {
     actions.resetForm();
-    successNotification("Success registration");
+    successNotification("Book request sent successfully!");
   };
 
   return (
     <div className={css.wrapper}>
+      <div className={css.header}>
+        <h3 className={css.title}>Book your campervan now</h3>
+        <p className={css.description}>
+          Stay connected! We are always ready to help you.
+        </p>
+      </div>
       <Formik
         validateOnBlur={false}
         initialValues={initialValues}
@@ -24,7 +30,7 @@ const BookForm = () => {
           <FieldInput name="name" label="Name" required />
           <FieldInput name="email" label="Email" required />
           <FieldInput type="date" name="date" label="Booking date" required />
-          <FieldInput name="comment" label="Comment" />
+          <FieldInput as="textarea" name="comment" label="Comment" />
           <div className={css.actions}>
             <Button type="submit">Send</Button>
           </div>

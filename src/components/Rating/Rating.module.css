@@ -1,7 +1,8 @@
 .wrapper {
   display: flex;
   gap: 16px;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 .location,
 .rating {
@@ -11,4 +12,11 @@
 }
 .star {
   color: var(--color-rating);
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
 }

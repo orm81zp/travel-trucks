@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import {
-  BsMap,
   BsDiagram3,
   BsCupHot,
   BsWind,
@@ -13,28 +13,34 @@ import {
 import { PiShower } from "react-icons/pi";
 import css from "./CatalogSideBar.module.css";
 import Button from "../Button/Button";
-import { selectFilterLocation } from "../../redux/filters/selectors";
-import clsx from "clsx";
-import { changeLocation, setFilters } from "../../redux/filters/slice";
+import { setFilters } from "../../redux/filters/slice";
 import SearchBox from "../SearchBox/SearchBox";
-
-const VehicleEquipment = ({ children, icon, onClick, isActive }) => {
-  return (
-    <button
-      className={clsx(css.equipment, isActive && css.equipmentActive)}
-      onClick={onClick}
-    >
-      {icon}
-      <span>{children}</span>
-    </button>
-  );
-};
+import SectionName from "../SectionName/SectionName";
+import FIlterBadge from "../FIlterBadge/FIlterBadge";
+import { parseQueryAsObject, setObjectAsQuery } from "../../utils/format";
 
 const CatalogSideBar = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const [vehicleEquipments, setVehicleEquipments] = useState([]);
-  const [vehicleType, setVehicleType] = useState("");
-  const filterLocation = useSelector(selectFilterLocation);
+  const searchType = searchParams.get("type") || "";
+  const searchLocation = searchParams.get("location") || "";
+  const searchEquipments = parseQueryAsObject(searchParams.get("equipments"));
+  const [vehicleEquipments, setVehicleEquipments] = useState(
+    searchEquipments || []
+  );
+  const [location, setLocation] = useState(searchLocation);
+  const [vehicleType, setVehicleType] = useState(searchType);
+
+  useEffect(() => {
+    dispatch(
+      setFilters({
+        type: searchType,
+        location: searchLocation,
+        equipments: searchEquipments,
+      })
+    );
+  }, [searchType, searchLocation, searchEquipments, dispatch]);
+
   const equipments = [
     { icon: <BsWind />, name: "AC", value: "AC", data: true },
     {
@@ -54,7 +60,7 @@ const CatalogSideBar = () => {
   ];
 
   const handleChangeLocation = (value) => {
-    dispatch(changeLocation(value));
+    setLocation(value);
   };
 
   const handleClickEquipment = (name, value) => () => {
@@ -82,49 +88,63 @@ const CatalogSideBar = () => {
   const handleSearch = () => {
     dispatch(
       setFilters({
+        location,
         type: vehicleType,
         equipments: vehicleEquipments,
       })
     );
+    setSearchParams((params) => {
+      params.set("location", location);
+      params.set("type", vehicleType);
+      params.set("equipments", setObjectAsQuery(vehicleEquipments));
+
+      return params;
+    });
   };
 
   return (
     <div className={css.wrapper}>
       <div className={css.section}>
-        <SearchBox value={filterLocation} onChange={handleChangeLocation} />
+        <SearchBox value={location} onChange={handleChangeLocation} />
       </div>
       <div className={css.section}>
         <div className={css.sectionName}>Filters</div>
         <div className={css.sectionGroup}>
-          <h4 className={css.sectionGroupname}>Vehicle equipment</h4>
+          <SectionName>Vehicle equipment</SectionName>
           <div className={css.equipmentsList}>
-            {equipments.map((equipment) => (
-              <VehicleEquipment
-                key={equipment.name}
-                icon={equipment.icon}
-                isActive={vehicleEquipments.find(
-                  (el) =>
-                    el.name === equipment.value && el.value === equipment.data
-                )}
-                onClick={handleClickEquipment(equipment.value, equipment.data)}
-              >
-                {equipment.name}
-              </VehicleEquipment>
-            ))}
+            {equipments.map((equipment) => {
+              const isActive = vehicleEquipments.find(
+                (el) =>
+                  el.name === equipment.value && el.value === equipment.data
+              );
+              return (
+                <FIlterBadge
+                  key={equipment.name}
+                  icon={equipment.icon}
+                  isActive={isActive}
+                  onClick={handleClickEquipment(
+                    equipment.value,
+                    equipment.data
+                  )}
+                >
+                  {equipment.name}
+                </FIlterBadge>
+              );
+            })}
           </div>
         </div>
         <div className={css.sectionGroup}>
-          <h4 className={css.sectionGroupname}>Vehicle type</h4>
+          <SectionName>Vehicle type</SectionName>
           <div className={css.equipmentsList}>
             {types.map((type) => (
-              <VehicleEquipment
+              <FIlterBadge
                 key={type.name}
                 icon={type.icon}
                 isActive={vehicleType === type.value}
                 onClick={handleClickType(type.value)}
               >
                 {type.name}
-              </VehicleEquipment>
+              </FIlterBadge>
             ))}
           </div>
         </div>

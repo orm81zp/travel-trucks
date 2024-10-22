@@ -10,9 +10,7 @@ const CatalogPage = () => {
         <div className={css.sidebar}>
           <CatalogSideBar />
         </div>
-        <div>
-          <CatalogList />
-        </div>
+        <CatalogList />
       </div>
     </Container>
   );

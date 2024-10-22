@@ -1,0 +1,3 @@
+- set a page number to query params
+- use react-datapicker
+- three dots for description and title
