@@ -1,5 +1,9 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { selectSearchFilter } from "../filters/selectors";
+import {
+  selectFilterLocation,
+  selectFilterType,
+  selectFilterEquipments,
+} from "../filters/selectors";
 
 export const selectCatalog = (state) => state.catalog.items;
 export const selectLoading = (state) => state.catalog.loading;
@@ -17,12 +21,34 @@ const sortByName = (contact1, contact2) => {
 };
 
 export const selectFilteredCatalog = createSelector(
-  [selectCatalog, selectSearchFilter],
-  (catalog, searchFilter) => {
-    return catalog
-      .filter(({ name }) =>
-        name.toLowerCase().includes(searchFilter.toLowerCase())
-      )
+  [
+    selectCatalog,
+    selectFilterLocation,
+    selectFilterType,
+    selectFilterEquipments,
+  ],
+  (catalog, filterLocation, filterType, filterEquipments) => {
+    const filteredCatalog = catalog
+      .filter(({ location, form, ...props }) => {
+        let hasSomeProps = true;
+
+        for (let equipment of filterEquipments) {
+          const { name, value } = equipment;
+          if (props.hasOwnProperty(name)) {
+            if (props[name] !== value) {
+              hasSomeProps = false;
+            }
+          }
+        }
+
+        return (
+          location.toLowerCase().includes(filterLocation.toLowerCase()) &&
+          form.includes(filterType) &&
+          hasSomeProps
+        );
+      })
       .sort(sortByName);
+
+    return filteredCatalog;
   }
 );

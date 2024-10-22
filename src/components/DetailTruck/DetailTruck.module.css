@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  gap: 60px;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  gap: 28px;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  gap: 44px;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    gap: 40px;
+    flex-basis: 50%;
+  }
+}

@@ -1,29 +1,39 @@
-import { useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectSearchFilter } from "../../redux/filters/selectors";
-import { changeFilter } from "../../redux/filters/slice";
+import { useId, useState } from "react";
+import { BsMap } from "react-icons/bs";
 import fieldsCss from "../styles/fields.module.css";
-import css from "./SearchBox.module.css";
+import clsx from "clsx";
 
-const SearchBox = () => {
-  const dispatch = useDispatch();
-  const value = useSelector(selectSearchFilter);
+const SearchBox = ({onChange, value}) => {
+  const [focused, setFocused] = useState(false);
   const searchFieldId = useId();
 
   const handleChange = (event) => {
-    dispatch(changeFilter(event.target.value));
+    onChange(event.target.value)
   };
 
+  const handleFocus = (value) => () => {
+    setFocused(value);
+  };
+
+  const fieldClassName = clsx(
+    fieldsCss.field,
+    focused && fieldsCss.fieldFocused
+  );
+
   return (
-    <div className={css.searchBox}>
-      <div className={fieldsCss.field}>
-        <label htmlFor={searchFieldId}>Find contacts by name or number</label>
+    <div className={fieldsCss.fieldRow}>
+      <label htmlFor={searchFieldId}>Location</label>
+      <div className={fieldClassName}>
+        <BsMap className="icon" />
         <input
+          onFocus={handleFocus(true)}
+          onBlur={handleFocus(false)}
           type="text"
           name="search"
           value={value}
           id={searchFieldId}
           onChange={handleChange}
+          placeholder="City"
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import Layout from "../Layout/Layout";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const CatalogPage = lazy(() => import("../../pages/CatalogPage/CatalogPage"));
-const TruckPage = lazy(() => import("../../pages/TruckPage/TruckPage"));
+const DetailPage = lazy(() => import("../../pages/DetailPage/DetailPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog/:id" element={<TruckPage />} />
+        <Route path="/catalog/:id" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Toaster />

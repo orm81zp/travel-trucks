@@ -1,12 +1,15 @@
-import { Button as ComponentButton } from "@mui/material";
-import { SIZES, TYPES, VARIANTS } from "./const";
+import clsx from "clsx";
+import { TYPES, VARIANTS } from "./const";
+import css from "./Button.module.css";
+import { Link } from "react-router-dom";
 
 const Button = ({
   onClick,
   children,
-  variant,
-  size,
-  startIcon,
+  external,
+  href,
+  to,
+  variant = VARIANTS.PRIMARY,
   type = TYPES.BUTTON,
 }) => {
   const clickHandler = (event) => {
@@ -16,21 +19,35 @@ const Button = ({
     }
   };
 
+  const classname = clsx(css.button, css[variant]);
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        className={classname}
+        rel="nofollow noopener"
+        target="_blank"
+      >
+        {children}
+      </a>
+    );
+  } else if (to) {
+    return (
+      <Link to={to} className={classname}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <ComponentButton
-      size={size}
-      type={type}
-      onClick={clickHandler}
-      variant={variant}
-      startIcon={startIcon}
-    >
+    <button type={type} onClick={clickHandler} className={classname}>
       {children}
-    </ComponentButton>
+    </button>
   );
 };
 
 Button.variants = Object.assign({}, VARIANTS);
 Button.types = Object.assign({}, TYPES);
-Button.sizes = Object.assign({}, SIZES);
 
 export default Button;

@@ -13,9 +13,10 @@ export const validationSchema = yup.object().shape({
     .max(50, text.max(50))
     .email("Should be correct email")
     .required(text.required()),
-  password: yup
+  date: yup
     .string()
     .min(8, text.min(8))
     .max(18, text.max(18))
     .required(text.required()),
+  comment: yup.string().min(8, text.min(8)).max(150, text.max(150)),
 });

@@ -14,6 +14,7 @@
   --color-button-hover: #d84343;
   --color-inputs: #f7f7f7;
   --color-rating: #ffc531;
+  --color-white: #ffffff;
 }
 
 @font-face {
@@ -79,7 +80,6 @@ a {
 
 img {
   display: block;
-  max-width: 100%;
 }
 
 input,

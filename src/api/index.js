@@ -7,12 +7,15 @@ axios.defaults.headers = {
   "Content-Type": "application/json",
 };
 
-export const catalogFetch = async (
-  options = { limit: CATALOG_LIMIT, page: 1 }
-) => {
+export const catalogFetch = async (options = {}) => {
+  const params = {
+    limit: CATALOG_LIMIT,
+    page: 1,
+    ...options,
+  };
   return mockData;
   // const response = await axios.get("/campers", {
-  //   params: { ...options },
+  //   params,
   // });
   // return response.data;
 };

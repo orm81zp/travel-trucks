@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCatalog } from "./operations";
+import { fetchCatalog, fetchMore } from "./operations";
 import { CATALOG_LIMIT } from "../../const";
 
 const handlePending = (state) => {
@@ -30,7 +30,16 @@ const catalogSlice = createSlice({
         state.items = items;
         state.total = total;
       })
-      .addCase(fetchCatalog.rejected, handleRejected);
+      .addCase(fetchCatalog.rejected, handleRejected)
+      .addCase(fetchMore.pending, handlePending)
+      .addCase(fetchMore.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const { items, total } = action.payload;
+        state.items.push(...items);
+        state.total = total;
+      })
+      .addCase(fetchMore.rejected, handleRejected);
   },
 });
 

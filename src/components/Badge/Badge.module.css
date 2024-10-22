@@ -1,9 +1,15 @@
-.badge {
+.defaultBadge {
+  display: flex;
+  transition: all var(--trns-fast);
+  font-family: "Inter Medium", Arial, sans-serif;
+}
+
+.badgeInline {
+  flex-direction: row;
   background-color: var(--color-badgets);
   padding: 12px;
-  border-radius: 100px;
-  display: flex;
   gap: 8px;
+  border-radius: 100px;
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
@@ -11,4 +17,10 @@
 
 .icon {
   flex-shrink: 0;
+  display: flex;
+}
+
+.badgeInline svg {
+  height: 20px;
+  width: 20px;
 }

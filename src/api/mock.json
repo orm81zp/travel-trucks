@@ -69,7 +69,7 @@
       "engine": "petrol",
       "AC": true,
       "bathroom": true,
-      "kitchen": true,
+      "kitchen": false,
       "TV": false,
       "radio": true,
       "refrigerator": true,
@@ -155,20 +155,20 @@
       ]
     },
     {
-      "id": "4",
-      "name": "Mighty Class C Large [MT]",
-      "price": 12000,
+      "id": "7",
+      "name": "El Monte Class A Family Sleeper [AF]",
+      "price": 15000,
       "rating": 4.4,
-      "location": "Ukraine, Odesa",
-      "description": "Embark on a grand adventure with the Mighty Class C Large [MT], a spacious and powerful alcove-style motorhome designed for larger groups and families. This RV is not just a mode of transportation but a mobile haven with ample space and premium amenities to ensure a comfortable and enjoyable journey through picturesque landscapes and charming destinations.",
-      "form": "alcove",
-      "length": "8.2m",
-      "width": "3.04m",
-      "height": "3.65m",
-      "tank": "208l",
-      "consumption": "25l/100km",
+      "location": "Ukraine, Sumy",
+      "description": "Indulge in the ultimate road trip experience with the El Monte Class A Family Sleeper [AF]. This fully integrated motorhome is a haven on wheels, offering unmatched luxury and comfort for families or groups of six. From its stylish design to the array of premium amenities, the El Monte Class A Family Sleeper [AF] redefines the standards of elegance on the open road.",
+      "form": "fullyIntegrated",
+      "length": "9.44m",
+      "width": "2.2m",
+      "height": "4m",
+      "tank": "302l",
+      "consumption": "33l/100km",
       "transmission": "automatic",
-      "engine": "hybrid",
+      "engine": "diesel",
       "AC": true,
       "bathroom": true,
       "kitchen": true,
@@ -180,28 +180,28 @@
       "water": true,
       "gallery": [
         {
-          "thumb": "https://ftp.goit.study/img/campers-test-task/4-1.webp",
-          "original": "https://ftp.goit.study/img/campers-test-task/4-1.webp"
+          "thumb": "https://ftp.goit.study/img/campers-test-task/7-1.webp",
+          "original": "https://ftp.goit.study/img/campers-test-task/7-1.webp"
         },
         {
-          "thumb": "https://ftp.goit.study/img/campers-test-task/4-2.webp",
-          "original": "https://ftp.goit.study/img/campers-test-task/4-2.webp"
+          "thumb": "https://ftp.goit.study/img/campers-test-task/7-2.webp",
+          "original": "https://ftp.goit.study/img/campers-test-task/7-2.webp"
         },
         {
-          "thumb": "https://ftp.goit.study/img/campers-test-task/4-3.webp",
-          "original": "https://ftp.goit.study/img/campers-test-task/4-3.webp"
+          "thumb": "https://ftp.goit.study/img/campers-test-task/7-3.webp",
+          "original": "https://ftp.goit.study/img/campers-test-task/7-3.webp"
         }
       ],
       "reviews": [
         {
           "reviewer_name": "Alice",
           "reviewer_rating": 5,
-          "comment": "The Mighty Class C Large [MT] provided an exceptional experience for our family road trip. Spacious interiors, well-equipped kitchen, and comfortable beds made our journey memorable. Highly recommended for larger groups looking for a premium RV."
+          "comment": "The El Monte Class A Family Sleeper [AF] provided an opulent experience for our family. The fully integrated features, spacious interiors, and top-notch amenities made our journey unforgettable. Highly recommended for those seeking a luxurious RV adventure."
         },
         {
           "reviewer_name": "Bob",
           "reviewer_rating": 3,
-          "comment": "Decent motorhome, but had some issues with functionality. The kitchen facilities were good, but the gas supply seemed insufficient. Overall, a satisfactory experience for our group."
+          "comment": "While the El Monte Class A Family Sleeper [AF] offered luxury, we faced some minor issues during our trip. The gas supply seemed insufficient, and a few amenities had issues. Overall, a good experience, but improvements are needed for the price."
         }
       ]
     }

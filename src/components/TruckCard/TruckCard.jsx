@@ -1,10 +1,21 @@
-import css from "./TruckCard.module.css";
-import { BsMap, BsDiagram3, BsCupHot } from "react-icons/bs";
-import { FaRegHeart, FaStar } from "react-icons/fa";
-import Badge from "../Badge/Badge";
+import { useMemo } from "react";
+import clsx from "clsx";
+import { FaRegHeart } from "react-icons/fa";
+import Button from "../Button/Button";
+import Features from "../Features/Features";
+import Rating from "../Rating/Rating";
+import DetailName from "../DetailName/DetailName";
+import DetailPrice from "../DetailPrice/DetailPrice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../redux/favorite/slice";
+import { selectFavorites } from "../../redux/favorite/selectors";
 
-const TruckCard = ({ data, onFavorite }) => {
-  console.log(data);
+import css from "./TruckCard.module.css";
+import DetailImage from "../DetailImage/DetailImage";
+
+const TruckCard = ({ data }) => {
+  const dispath = useDispatch();
+  const favorites = useSelector(selectFavorites);
   const {
     id,
     name,
@@ -13,62 +24,42 @@ const TruckCard = ({ data, onFavorite }) => {
     price,
     reviews,
     rating,
-    kitchen,
-    TV,
-    bathroom,
-    AC,
-    refrigerator,
-    transmission,
     gallery = [],
   } = data;
-  const reviewsCount = reviews?.length || 0;
+  const isFavorite = favorites.includes(id);
   const firstImage = gallery.length > 0 ? gallery[0]["thumb"] : null;
 
   const handleFavorite = (event) => {
     event.preventDefault();
-    onFavorite(id);
+    dispath(toggleFavorite(id));
   };
 
   return (
     <div className={css.wrapper}>
-      {firstImage && (
-        <img
-          className={css.image}
-          src={firstImage}
-          alt={name}
-          width="292"
-          height="320"
-        />
-      )}
+      <DetailImage gallery={gallery} showFirst />
       <div className={css.card}>
         <div className={css.header}>
           <div className={css.headerRow}>
-            <h3>{name}</h3>
+            <DetailName name={name} />
             <div className={css.priceRow}>
-              {price}
-              <a className={css.favoriteLink} href="#" onClick={handleFavorite}>
+              <DetailPrice price={price} />
+              <a
+                className={clsx(css.favoriteLink, {
+                  [css.favorited]: isFavorite,
+                })}
+                href="#"
+                onClick={handleFavorite}
+              >
                 <FaRegHeart />
               </a>
             </div>
           </div>
-          <div className={css.info}>
-            <span className={css.rating}>
-              <span className={css.star}>
-                <FaStar />
-              </span>{" "}
-              {rating} ({reviewsCount} Reviews)
-            </span>
-            <span className={css.location}>
-              <BsMap />
-              {location}
-            </span>
-          </div>
+          <Rating rating={rating} reviews={reviews} location={location} />
         </div>
         <div className={css.description}>{description}</div>
-        <div className={css.features}>
-          {kitchen && <Badge icon={<BsCupHot />}>kitchen</Badge>}
-          {transmission && <Badge icon={<BsDiagram3 />}>{transmission}</Badge>}
-          <span>Automatic</span> <span>Petrol</span>
+        <Features data={data} />
+        <div>
+          <Button to={`/catalog/${id}`}>Show more</Button>
         </div>
       </div>
     </div>

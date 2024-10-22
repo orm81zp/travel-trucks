@@ -3,3 +3,8 @@
   gap: 32px;
   flex-direction: column;
 }
+
+.loadmore {
+  text-align: center;
+  margin-top: 8px;
+}

@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.location,
+.rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.star {
+  color: var(--color-rating);
+}

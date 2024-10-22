@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import Container from "../../components/Container/Container";
-import css from "./TruckPage.module.css";
+import css from "./DetailPage.module.css";
 import { useParams } from "react-router-dom";
 import { truckFetch } from "../../api";
 import Loader from "../../components/Loader/Loader";
+import DetailTruck from "../../components/DetailTruck/DetailTruck";
 
 const TruckPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { id } = useParams();
-
-  console.log(data);
-  console.log("error", error);
 
   useEffect(() => {
     const fetchDetailtTruck = async (id) => {
@@ -37,7 +35,10 @@ const TruckPage = () => {
 
   return (
     <Container>
-      <div className={css.wrapper}>ProductPage</div>
+      <div className={css.wrapper}>
+        {error && <span>{error}</span>}
+        {!error && <DetailTruck data={data} />}
+      </div>
     </Container>
   );
 };

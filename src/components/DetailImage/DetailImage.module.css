@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.image {
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 10px;
+}
