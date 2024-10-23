@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectLoading,
@@ -8,9 +7,9 @@ import {
   selectPage,
 } from "../../redux/catalog/selectors";
 import css from "./CatalogList.module.css";
-import TruckCard from "../TruckCard/TruckCard";
+import CatalogCard from "../CatalogCard/CatalogCard";
 import Loader from "../Loader/Loader";
-import { fetchCatalog, fetchMore } from "../../redux/catalog/operations";
+import { fetchMore } from "../../redux/catalog/operations";
 import Button from "../Button/Button";
 import { CATALOG_LIMIT } from "../../const";
 import Message from "../Message/Message";
@@ -26,10 +25,6 @@ const CatalogList = () => {
   const empty = catalog.length === 0;
   const showLoadMore = !empty && page < Math.ceil(total / CATALOG_LIMIT);
 
-  useEffect(() => {
-    dispatch(fetchCatalog());
-  }, [dispatch]);
-
   const handleLoadMore = () => {
     const nextPage = page + 1;
     dispatch(updatePage(nextPage));
@@ -40,8 +35,8 @@ const CatalogList = () => {
     <div className={css.wrapper}>
       {error && <Message>{error}</Message>}
       {!loading && !error && empty && <Message>No data to display.</Message>}
-      {catalog.map((truck) => (
-        <TruckCard key={truck.id} data={truck} />
+      {catalog.map((card) => (
+        <CatalogCard key={card.id} data={card} />
       ))}
       {loading && <Loader />}
       {showLoadMore && (

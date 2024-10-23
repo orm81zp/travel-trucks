@@ -1,17 +1,14 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { getObjectAsQueryParams } from "../../utils/format";
-
 export const selectFilterLocation = (state) => state.filters.location;
 export const selectFilterType = (state) => state.filters.type;
 export const selectFilterEquipments = (state) => state.filters.equipments;
 
-export const selectFilters = createSelector(
-  [selectFilterEquipments, selectFilterLocation, selectFilterType],
-  (equipments, location, form) => {
-    return {
-      form,
-      location,
-      ...getObjectAsQueryParams(equipments),
-    };
-  }
-);
+// export const selectFilters = createSelector(
+//   [selectFilterEquipments, selectFilterLocation, selectFilterType],
+//   (equipments, location, form) => {
+//     return {
+//       form,
+//       location,
+//       ...getObjectAsQueryParams(equipments),
+//     };
+//   }
+// );

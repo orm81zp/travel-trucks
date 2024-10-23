@@ -11,12 +11,14 @@ export const validationSchema = yup.object().shape({
     .string()
     .min(3, text.min(3))
     .max(50, text.max(50))
-    .email("Should be correct email")
+    .email("Invalid email address")
     .required(text.required()),
   date: yup
     .string()
-    .min(8, text.min(8))
-    .max(18, text.max(18))
+    .matches(
+      /^\d{2}\/\d{2}\/\d{4}$/g,
+      "Invalid date format (example: DD/MM/YYYY)"
+    )
     .required(text.required()),
-  comment: yup.string().min(8, text.min(8)).max(150, text.max(150)),
+  comment: yup.string().min(3, text.min(3)).max(250, text.max(250)),
 });

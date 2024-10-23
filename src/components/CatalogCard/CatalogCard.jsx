@@ -1,19 +1,20 @@
 import clsx from "clsx";
 import { FaRegHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button/Button";
 import Features from "../Features/Features";
 import Rating from "../Rating/Rating";
 import DetailName from "../DetailName/DetailName";
 import DetailPrice from "../DetailPrice/DetailPrice";
-import { useDispatch, useSelector } from "react-redux";
+
 import { toggleFavorite } from "../../redux/favorite/slice";
 import { selectFavorites } from "../../redux/favorite/selectors";
 
-import css from "./TruckCard.module.css";
+import css from "./CatalogCard.module.css";
 import DetailImage from "../DetailImage/DetailImage";
 import { ROUTERS } from "../../const";
 
-const TruckCard = ({ data }) => {
+const CatalogCard = ({ data }) => {
   const dispath = useDispatch();
   const favorites = useSelector(selectFavorites);
   const {
@@ -59,7 +60,7 @@ const TruckCard = ({ data }) => {
             location={location}
           />
         </div>
-        <div className={css.description}>{description}</div>
+        <p className={css.description}>{description}</p>
         <Features data={data} />
         <div>
           <Button to={`${ROUTERS.CATALOG}/${id}`}>Show more</Button>
@@ -69,4 +70,4 @@ const TruckCard = ({ data }) => {
   );
 };
 
-export default TruckCard;
+export default CatalogCard;

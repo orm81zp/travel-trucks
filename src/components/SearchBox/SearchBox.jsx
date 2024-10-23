@@ -33,14 +33,15 @@ const SearchBox = ({ onChange, value }) => {
         <div className={fieldClassName}>
           <BsMap className="icon" />
           <input
+            id={searchFieldId}
+            name="search"
+            type="text"
             onFocus={handleFocus(true)}
             onBlur={handleFocus(false)}
-            type="text"
-            name="search"
             value={value}
-            id={searchFieldId}
             onChange={handleChange}
             placeholder="City"
+            autoComplete="off"
           />
         </div>
       </div>

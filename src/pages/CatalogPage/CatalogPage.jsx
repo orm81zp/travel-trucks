@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { setFilters } from "../../redux/filters/slice";
 import { parseQueryAsObject } from "../../utils/format";
+import { fetchCatalog } from "../../redux/catalog/operations";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -23,15 +24,19 @@ const CatalogPage = () => {
         equipments: searchEquipments,
       })
     );
+    dispatch(fetchCatalog());
   }, [searchType, searchLocation, searchEquipments, dispatch]);
 
   return (
     <Container>
+      <h1 className="visually-hidden">Catalog</h1>
       <div className={css.wrapper}>
         <div className={css.sidebar}>
           <CatalogSideBar />
         </div>
-        <CatalogList />
+        <div className={css.content}>
+          <CatalogList />
+        </div>
       </div>
     </Container>
   );

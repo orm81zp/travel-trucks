@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CATALOG_LIMIT } from "../const";
-import mockData from "./mock.json";
+// import mockData from "./mock.json";
 
 axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/";
 axios.defaults.headers = {
@@ -20,7 +20,7 @@ export const catalogFetch = async (options = {}) => {
   return response.data;
 };
 
-export const truckFetch = async (truckId) => {
+export const detailFetch = async (truckId) => {
   const response = await axios.get(`/campers/${truckId}`);
   return response.data;
 };

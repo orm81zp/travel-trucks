@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import Container from "../../components/Container/Container";
 import css from "./DetailPage.module.css";
 import { useParams } from "react-router-dom";
-import { truckFetch } from "../../api";
+import { detailFetch } from "../../api";
 import Loader from "../../components/Loader/Loader";
 import DetailTruck from "../../components/DetailTruck/DetailTruck";
+import Message from "../../components/Message/Message";
 
 const TruckPage = () => {
-  const [data, setData] = useState(null);
+  const [detail, setDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { id } = useParams();
@@ -15,12 +16,14 @@ const TruckPage = () => {
   useEffect(() => {
     const fetchDetailtTruck = async (id) => {
       try {
-        const response = await truckFetch(id);
-        setData(response);
-      } catch ({ message }) {
-        setError(
-          message || "Oops, something went wrong. Try again a bit later..."
-        );
+        const data = await detailFetch(id);
+        setDetail(data);
+      } catch ({ message, status }) {
+        if (status === 404) {
+          setError("No data found.");
+        } else {
+          setError(message || "Oops, something went wrong!");
+        }
       } finally {
         setLoading(false);
       }
@@ -36,8 +39,8 @@ const TruckPage = () => {
   return (
     <Container>
       <div className={css.wrapper}>
-        {error && <span>{error}</span>}
-        {!error && <DetailTruck data={data} />}
+        {error && <Message>{error}</Message>}
+        {!error && detail && <DetailTruck data={detail} />}
       </div>
     </Container>
   );

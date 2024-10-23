@@ -27,7 +27,7 @@ export const fetchCatalog = createAsyncThunk(
       });
     } catch ({ message, status }) {
       if (status === 404) {
-        return rejectWithValue("No data to display.");
+        return rejectWithValue("No data found.");
       }
       return rejectWithValue(message);
     }
@@ -44,7 +44,7 @@ export const fetchMore = createAsyncThunk(
       });
     } catch ({ message, status }) {
       if (status === 404) {
-        return rejectWithValue("No data to display.");
+        return rejectWithValue("No data found.");
       }
       return rejectWithValue(message);
     }

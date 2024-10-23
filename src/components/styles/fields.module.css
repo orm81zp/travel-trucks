@@ -8,10 +8,6 @@
   color: var(--color-grey);
 }
 
-.required label::after {
-  content: "*";
-}
-
 .field {
   display: flex;
   align-items: center;
@@ -21,6 +17,10 @@
   padding: 16px 20px;
   color: var(--color-grey);
   border-radius: 12px;
+}
+
+.field label::after {
+  content: "*";
 }
 
 .fieldWithTextarea {

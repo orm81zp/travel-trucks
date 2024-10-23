@@ -1,13 +1,16 @@
 import { Form, Formik } from "formik";
+
 import { successNotification } from "../../utils/notification";
 import Button from "../Button/Button";
 import FieldInput from "../FieldInput/FieldInput";
+import DataPickerInput from "../DataPickerInput/DataPickerInput";
 import { initialValues } from "./const";
 import { validationSchema } from "./const/validation";
 import css from "./BookForm.module.css";
 
 const BookForm = () => {
-  const handleSubmit = (contact, actions) => {
+  const handleSubmit = (values, actions) => {
+    console.log(values);
     actions.resetForm();
     successNotification("Book request sent successfully!");
   };
@@ -29,7 +32,7 @@ const BookForm = () => {
         <Form className={css.form}>
           <FieldInput name="name" label="Name" required />
           <FieldInput name="email" label="Email" required />
-          <FieldInput type="date" name="date" label="Booking date" required />
+          <DataPickerInput name="date" label="Booking date" required />
           <FieldInput as="textarea" name="comment" label="Comment" />
           <div className={css.actions}>
             <Button type="submit">Send</Button>

@@ -15,7 +15,13 @@ const FieldInput = ({ name, label, required, className = "", ...props }) => {
         })}
       >
         {label && <label htmlFor={fieldId}>{label}</label>}
-        <Field type="text" name={name} id={fieldId} {...props} />
+        <Field
+          type="text"
+          name={name}
+          id={fieldId}
+          autoComplete="off"
+          {...props}
+        />
       </div>
       <ErrorMessage className={fieldsCss.error} name={name} component="span" />
     </>

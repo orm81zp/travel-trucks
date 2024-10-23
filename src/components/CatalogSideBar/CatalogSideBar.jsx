@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -22,7 +22,7 @@ import {
 import SearchBox from "../SearchBox/SearchBox";
 import SectionName from "../SectionName/SectionName";
 import FIlterBadge from "../FIlterBadge/FIlterBadge";
-import { getObjectAsQueryParams, setObjectAsQuery } from "../../utils/format";
+import { setObjectAsQuery } from "../../utils/format";
 import { fetchCatalog } from "../../redux/catalog/operations";
 import { updatePage } from "../../redux/catalog/slice";
 
@@ -53,6 +53,12 @@ const CatalogSideBar = () => {
   const [stateType, setStateType] = useState(filterType);
   const [stateLocation, setStateLocation] = useState(filterLocation);
   const [stateEquipments, setStateEquipments] = useState(filterEquipments);
+
+  useEffect(() => {
+    setStateType(filterType);
+    setStateLocation(filterLocation);
+    setStateEquipments(filterEquipments);
+  }, [filterType, filterLocation, filterEquipments]);
 
   const handleChangeLocation = (value) => {
     setStateLocation(value);

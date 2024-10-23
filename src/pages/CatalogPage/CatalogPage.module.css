@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  width: 100%;
+  flex-basis: 100%;
 }
 
 @media only screen and (min-width: 1440px) {
@@ -17,7 +17,7 @@
     gap: 64px;
   }
   .sidebar {
-    width: 360px;
+    flex-basis: 360px;
     flex-shrink: 0;
   }
 }

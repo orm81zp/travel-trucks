@@ -10,21 +10,17 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    changeLocation(state, action) {
-      state.location = action.payload || "";
+    changeLocation(state, { payload }) {
+      state.location = payload || "";
     },
-    changeType(state, action) {
-      state.type = action.payload || "";
+    changeType(state, { payload }) {
+      state.type = payload || "";
     },
-    changeEquipments(state, action) {
-      state.equipments = action.payload || [];
+    changeEquipments(state, { payload }) {
+      state.equipments = payload || [];
     },
-    setFilters(state, action) {
-      const {
-        type = "",
-        equipments = [],
-        location = "",
-      } = action.payload || {};
+    setFilters(state, { payload }) {
+      const { type = "", equipments = [], location = "" } = payload || {};
       state.type = type;
       state.location = location;
       state.equipments = equipments;
