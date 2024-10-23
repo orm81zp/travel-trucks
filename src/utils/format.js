@@ -24,3 +24,12 @@ export const parseQueryAsObject = (data) => {
 export const setObjectAsQuery = (data) => {
   return data.map(({ name, value }) => `${name}:${value}`).join(",");
 };
+
+export const getObjectAsQueryParams = (data) => {
+  return data
+    .map(({ name, value }) => ({ [name]: value }))
+    .reduce(
+      (accumulator, currentValue) => Object.assign(accumulator, currentValue),
+      {}
+    );
+};

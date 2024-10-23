@@ -33,8 +33,13 @@ const filtersSlice = createSlice({
 });
 
 // actions
-export const { changeLocation, changeType, changeEquipments, setFilters } =
-  filtersSlice.actions;
+export const {
+  changeLocation,
+  changeType,
+  changeEquipments,
+  toggleEquipments,
+  setFilters,
+} = filtersSlice.actions;
 
 // reducer
 export const filtersReducer = filtersSlice.reducer;

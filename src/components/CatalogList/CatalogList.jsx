@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectFilteredCatalog,
   selectLoading,
   selectError,
   selectTotal,
+  selectCatalog,
+  selectPage,
 } from "../../redux/catalog/selectors";
 import css from "./CatalogList.module.css";
 import TruckCard from "../TruckCard/TruckCard";
@@ -13,19 +14,17 @@ import { fetchCatalog, fetchMore } from "../../redux/catalog/operations";
 import Button from "../Button/Button";
 import { CATALOG_LIMIT } from "../../const";
 import Message from "../Message/Message";
+import { updatePage } from "../../redux/catalog/slice";
 
 const CatalogList = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
   const loading = useSelector(selectLoading);
   const total = useSelector(selectTotal);
   const error = useSelector(selectError);
-  const showLoadMore = useMemo(
-    () => page < Math.floor(total / CATALOG_LIMIT),
-    [total, page]
-  );
-  const filteredCatalog = useSelector(selectFilteredCatalog);
-  const empty = filteredCatalog.length === 0;
+  const catalog = useSelector(selectCatalog);
+  const page = useSelector(selectPage);
+  const empty = catalog.length === 0;
+  const showLoadMore = !empty && page < Math.ceil(total / CATALOG_LIMIT);
 
   useEffect(() => {
     dispatch(fetchCatalog());
@@ -33,19 +32,15 @@ const CatalogList = () => {
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
-    setPage(nextPage);
+    dispatch(updatePage(nextPage));
     dispatch(fetchMore({ page: nextPage }));
   };
 
   return (
     <div className={css.wrapper}>
-      {error && <span>{error}</span>}
-      {empty && (
-        <Message>
-          Nothing to show. Please, change filters or try to load more.
-        </Message>
-      )}
-      {filteredCatalog.map((truck) => (
+      {error && <Message>{error}</Message>}
+      {!loading && !error && empty && <Message>No data to display.</Message>}
+      {catalog.map((truck) => (
         <TruckCard key={truck.id} data={truck} />
       ))}
       {loading && <Loader />}

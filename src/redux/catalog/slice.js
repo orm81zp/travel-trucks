@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCatalog, fetchMore } from "./operations";
-import { CATALOG_LIMIT } from "../../const";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -9,6 +8,7 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
+  state.items = [];
 };
 
 const catalogSlice = createSlice({
@@ -16,31 +16,39 @@ const catalogSlice = createSlice({
   initialState: {
     items: [],
     total: 0,
-    limit: CATALOG_LIMIT,
+    page: 1,
     loading: false,
     error: null,
+  },
+  reducers: {
+    updatePage(state, action) {
+      state.page = action.payload || 1;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCatalog.pending, handlePending)
       .addCase(fetchCatalog.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
         const { items, total } = action.payload;
         state.items = items;
+        state.loading = false;
+        state.error = null;
         state.total = total;
       })
       .addCase(fetchCatalog.rejected, handleRejected)
       .addCase(fetchMore.pending, handlePending)
       .addCase(fetchMore.fulfilled, (state, action) => {
+        const { items, total } = action.payload;
+        state.items = state.items.concat(items);
         state.loading = false;
         state.error = null;
-        const { items, total } = action.payload;
-        state.items.push(...items);
         state.total = total;
       })
       .addCase(fetchMore.rejected, handleRejected);
   },
 });
+
+// actions
+export const { updatePage } = catalogSlice.actions;
 
 export const catalogReducer = catalogSlice.reducer;
