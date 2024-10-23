@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { useSearchParams } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import DetailName from "../DetailName/DetailName";
 import DetailPrice from "../DetailPrice/DetailPrice";
@@ -9,15 +9,14 @@ import Tabs from "../Tabs/Tabs";
 import BookForm from "../BookForm/BookForm";
 import DetailFeatures from "../DetailFeatures/DetailFeatures";
 import ReviewsList from "../ReviewsList/ReviewsList";
+import { TAB_NAMES } from "../../const";
 
-const TAB_NAMES = {
-  FEATURES: "features",
-  REVIEWS: "reviews",
-};
 const TABS = [TAB_NAMES.FEATURES, TAB_NAMES.REVIEWS];
 
 const DetailTruck = ({ data }) => {
-  const [currentTab, setCurrentTab] = useState(TABS[0]);
+  const [searchParams] = useSearchParams();
+  const searchTab = searchParams.get("tab");
+  const [currentTab, setCurrentTab] = useState(searchTab || TABS[0]);
   const {
     name,
     description,
@@ -36,7 +35,7 @@ const DetailTruck = ({ data }) => {
     if (currentTab === TAB_NAMES.FEATURES) {
       return <DetailFeatures data={data} />;
     } else if (currentTab === TAB_NAMES.REVIEWS) {
-      return <ReviewsList reviews={[]} />;
+      return <ReviewsList reviews={reviews} />;
     }
     return <div>Please, choose a tab</div>;
   };
@@ -46,7 +45,11 @@ const DetailTruck = ({ data }) => {
       <div className={css.header}>
         <div>
           <DetailName name={name} />
-          <Rating rating={rating} reviews={reviews} location={location} />
+          <Rating
+            rating={rating}
+            reviewsCount={reviews.length}
+            location={location}
+          />
           <DetailPrice price={price} />
         </div>
         <DetailImage gallery={gallery} />

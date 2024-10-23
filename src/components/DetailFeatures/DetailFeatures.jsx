@@ -3,21 +3,7 @@ import SectionName from "../SectionName/SectionName";
 import css from "./DetailFeatures.module.css";
 
 const DetailFeatures = ({ data }) => {
-  const {
-    id,
-    name,
-    description,
-    location,
-    price,
-    reviews,
-    rating,
-    form,
-    length,
-    width,
-    height,
-    tank,
-    consumption,
-  } = data;
+  const { form, length, width, height, tank, consumption } = data;
 
   return (
     <div className={css.wrapper}>

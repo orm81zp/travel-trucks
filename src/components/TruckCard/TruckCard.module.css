@@ -19,7 +19,8 @@
   transition: all var(--trns-fast);
 }
 .favorited,
-.favoriteLink:hover {
+.favoriteLink:hover,
+.favoriteLink:focus-visible {
   color: var(--color-button);
 }
 .card {

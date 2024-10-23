@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import clsx from "clsx";
 import { FaRegHeart } from "react-icons/fa";
 import Button from "../Button/Button";
@@ -12,6 +11,7 @@ import { selectFavorites } from "../../redux/favorite/selectors";
 
 import css from "./TruckCard.module.css";
 import DetailImage from "../DetailImage/DetailImage";
+import { ROUTERS } from "../../const";
 
 const TruckCard = ({ data }) => {
   const dispath = useDispatch();
@@ -53,12 +53,16 @@ const TruckCard = ({ data }) => {
               </a>
             </div>
           </div>
-          <Rating rating={rating} reviews={reviews} location={location} />
+          <Rating
+            rating={rating}
+            reviewsCount={reviews.length}
+            location={location}
+          />
         </div>
         <div className={css.description}>{description}</div>
         <Features data={data} />
         <div>
-          <Button to={`/catalog/${id}`}>Show more</Button>
+          <Button to={`${ROUTERS.CATALOG}/${id}`}>Show more</Button>
         </div>
       </div>
     </div>

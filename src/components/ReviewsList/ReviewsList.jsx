@@ -5,12 +5,9 @@ import css from "./ReviewsList.module.css";
 const ReviewsList = ({ reviews }) => {
   const empty = reviews.length === 0;
 
-  if (empty) {
-    return <Message>No reviews yet</Message>;
-  }
-
   return (
     <div className={css.wrapper}>
+      {empty && <Message>No reviews yet</Message>}
       {reviews.map((review) => (
         <ReviewerCard key={review.reviewer_name} review={review} />
       ))}

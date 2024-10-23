@@ -111,7 +111,7 @@ const CatalogSideBar = () => {
         <div className={css.sectionName}>Filters</div>
         <div className={css.sectionGroup}>
           <SectionName>Vehicle equipment</SectionName>
-          <div className={css.equipmentsList}>
+          <div className={css.filterList}>
             {equipments.map((equipment) => {
               const isActive = vehicleEquipments.find(
                 (el) =>
@@ -135,7 +135,7 @@ const CatalogSideBar = () => {
         </div>
         <div className={css.sectionGroup}>
           <SectionName>Vehicle type</SectionName>
-          <div className={css.equipmentsList}>
+          <div className={css.filterList}>
             {types.map((type) => (
               <FIlterBadge
                 key={type.name}
