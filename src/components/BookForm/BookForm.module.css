@@ -20,7 +20,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .form button {
@@ -29,6 +29,7 @@
 
 .actions {
   text-align: center;
+  margin-top: 10px;
 }
 
 @media only screen and (min-width: 1440px) {

@@ -24,3 +24,9 @@
   height: 20px;
   width: 20px;
 }
+
+@media only screen and (min-width: 768px) {
+  .badgeInline {
+    padding: 14px 18px;
+  }
+}

@@ -20,6 +20,10 @@ TravelTrucks is an application for renting camper vans. Do not delay, go on your
 
 Use `npm run dev` to run the application locally in the development environment.
 
+### Env Variables
+
+Add `VITE_APP_ENV="test"` to the `.env` file if you prefer using mock data instead of calling the API directly during local development. Check `env.example` file to see more options.
+
 ## Functionality
 
 ### Home Page

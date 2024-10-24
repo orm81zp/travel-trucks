@@ -3,6 +3,15 @@ import { catalogFetch } from "../../api";
 import { getObjectAsQueryParams } from "../../utils/format";
 import { CATALOG_LIMIT } from "../../const";
 
+const handleError = ({ message, status }) => {
+  if (status === 404) {
+    return "No data found.";
+  } else if (status === 429) {
+    return "Sorry, but there are too many requests. Please try again later...";
+  }
+  return message;
+};
+
 const prepareFilterParams = (state) => {
   const { filters, catalog } = state;
   const { type: form, location, equipments } = filters;
@@ -25,11 +34,8 @@ export const fetchCatalog = createAsyncThunk(
         ...prepareFilterParams(getState()),
         ...options,
       });
-    } catch ({ message, status }) {
-      if (status === 404) {
-        return rejectWithValue("No data found.");
-      }
-      return rejectWithValue(message);
+    } catch (error) {
+      return rejectWithValue(handleError(error));
     }
   }
 );
@@ -42,11 +48,8 @@ export const fetchMore = createAsyncThunk(
         ...prepareFilterParams(getState()),
         ...options,
       });
-    } catch ({ message, status }) {
-      if (status === 404) {
-        return rejectWithValue("No data found.");
-      }
-      return rejectWithValue(message);
+    } catch (error) {
+      return rejectWithValue(handleError(error));
     }
   }
 );

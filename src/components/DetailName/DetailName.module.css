@@ -1,5 +1,6 @@
-.name {
+.overflow {
   text-wrap: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  line-height: 1;
 }

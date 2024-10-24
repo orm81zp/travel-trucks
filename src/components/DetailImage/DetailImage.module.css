@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  gap: 48px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
@@ -8,4 +8,20 @@
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .image {
+    max-width: 265px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    gap: 48px;
+  }
 }

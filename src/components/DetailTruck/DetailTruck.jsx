@@ -43,8 +43,8 @@ const DetailTruck = ({ data }) => {
   return (
     <div className={css.wrapper}>
       <div className={css.header}>
-        <div>
-          <DetailName name={name} />
+        <div className={css.nameRow}>
+          <DetailName name={name} overflow={false} />
           <Rating
             rating={rating}
             reviewsCount={reviews.length}

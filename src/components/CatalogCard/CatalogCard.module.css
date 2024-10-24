@@ -7,47 +7,64 @@
   border-radius: 20px;
   flex-direction: column;
 }
+
 .priceRow {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
 }
+
 .favoriteLink {
   display: flex;
   align-items: center;
   transition: all var(--trns-fast);
 }
+
 .favorited,
 .favoriteLink:hover,
 .favoriteLink:focus-visible {
   color: var(--color-button);
 }
+
 .card {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
 }
-/* .description {
+.description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-} */
+}
+
 .header {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .headerRow {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   font-size: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .headerRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
   .wrapper {
     flex-direction: row;
     align-items: flex-start;
+  }
+  .card {
+    max-width: 524px;
   }
 }
