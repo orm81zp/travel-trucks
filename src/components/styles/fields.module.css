@@ -19,17 +19,17 @@
   border-radius: 12px;
 }
 
-.field label::after {
+.field label {
+  flex-shrink: 0;
+}
+
+.required label::after {
   content: "*";
 }
 
 .fieldWithTextarea {
   height: auto;
   align-items: flex-start;
-}
-
-.field label {
-  flex-shrink: 0;
 }
 
 .field textarea {

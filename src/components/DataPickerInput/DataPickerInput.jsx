@@ -11,7 +11,7 @@ const FieldInput = ({ label, required, ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
   const fieldId = useId();
-  const className = clsx(fieldsCss.field, { required: required });
+  const className = clsx(fieldsCss.field, { [fieldsCss.required]: required });
 
   const handleDateChange = (value) => {
     setFieldValue(field.name, formatDate(value));

@@ -10,6 +10,9 @@
   fill: var(--color-white);
   color: var(--color-white);
 }
+.react-datepicker-wrapper {
+  width: 100%;
+}
 .react-datepicker__navigation-icon::before {
   border-color: var(--color-text);
 }

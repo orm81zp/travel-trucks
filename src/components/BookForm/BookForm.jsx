@@ -10,7 +10,10 @@ import css from "./BookForm.module.css";
 
 const BookForm = () => {
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    console.log(
+      "BookForm submitted successfully with the following values",
+      values
+    );
     actions.resetForm();
     successNotification("Book request sent successfully!");
   };
