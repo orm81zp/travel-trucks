@@ -58,6 +58,8 @@ const CatalogCard = ({ data }) => {
             rating={rating}
             reviewsCount={reviews.length}
             location={location}
+            id={id}
+            ratingAsLink
           />
         </div>
         <p className={css.description}>{description}</p>

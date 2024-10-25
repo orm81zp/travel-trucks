@@ -48,7 +48,6 @@ const catalogSlice = createSlice({
   },
 });
 
-// actions
 export const { updatePage } = catalogSlice.actions;
 
 export const catalogReducer = catalogSlice.reducer;

@@ -28,7 +28,6 @@ const filtersSlice = createSlice({
   },
 });
 
-// actions
 export const {
   changeLocation,
   changeType,
@@ -37,5 +36,4 @@ export const {
   setFilters,
 } = filtersSlice.actions;
 
-// reducer
 export const filtersReducer = filtersSlice.reducer;

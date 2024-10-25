@@ -10,6 +10,7 @@ import BookForm from "../BookForm/BookForm";
 import DetailFeatures from "../DetailFeatures/DetailFeatures";
 import ReviewsList from "../ReviewsList/ReviewsList";
 import { TAB_NAMES } from "../../const";
+import useScrollToAnchor from "../../hooks/useScrollToAnchor";
 
 const TABS = [TAB_NAMES.FEATURES, TAB_NAMES.REVIEWS];
 
@@ -17,7 +18,9 @@ const DetailTruck = ({ data }) => {
   const [searchParams] = useSearchParams();
   const searchTab = searchParams.get("tab");
   const [currentTab, setCurrentTab] = useState(searchTab || TABS[0]);
+  useScrollToAnchor();
   const {
+    id,
     name,
     description,
     location,
@@ -49,6 +52,7 @@ const DetailTruck = ({ data }) => {
             rating={rating}
             reviewsCount={reviews.length}
             location={location}
+            id={id}
           />
           <DetailPrice price={price} />
         </div>
@@ -57,7 +61,7 @@ const DetailTruck = ({ data }) => {
       </div>
       <div className={css.footer}>
         <Tabs tabs={TABS} onChange={handleTabChange} currentTab={currentTab} />
-        <div className={css.content}>
+        <div id={currentTab} className={css.content}>
           <div className={css.contentSide}>{renderTabContent()}</div>
           <div className={css.contentSide}>
             <BookForm />

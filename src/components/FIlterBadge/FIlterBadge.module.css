@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-grey-light);
+  color: var(--color-main);
   outline: none;
   background-color: var(--color-white);
   cursor: pointer;

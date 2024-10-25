@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../Layout/Layout";
 
@@ -12,15 +11,16 @@ const NotFoundPage = lazy(() =>
 
 const App = () => {
   return (
-    <Layout>
+    <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog/:id" element={<DetailPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="catalog/:id" element={<DetailPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
-      <Toaster />
-    </Layout>
+    </>
   );
 };
 
